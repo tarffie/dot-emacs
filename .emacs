@@ -147,3 +147,30 @@
 (rc/require 'tree-sitter-langs)
 (global-tree-sitter-mode t)
 
+
+(rc/require 'company)
+(use-package company
+  :ensure t
+  :init
+  (global-company-mode)
+  :config
+  ;; Additional configuration options, if needed
+  )
+
+(setq company-idle-delay 0.2) ;; Adjust the idle delay as needed
+
+(use-package company-dabbrev
+  :config
+  (add-to-list 'company-backends 'company-dabbrev))
+
+(rc/require 'smartparens)
+(use-package smartparens
+  :ensure t
+  :config
+  (require 'smartparens-config)
+  (smartparens-global-mode 1)
+  (show-smartparens-global-mode 1))
+
+(sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+(sp-pair "[" nil :post-handlers '(("||\n[i]" "RET")))
+(sp-pair "(" nil :post-handlers '(("||\n[i]" "RET")))

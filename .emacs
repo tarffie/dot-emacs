@@ -174,3 +174,17 @@
 (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
 (sp-pair "[" nil :post-handlers '(("||\n[i]" "RET")))
 (sp-pair "(" nil :post-handlers '(("||\n[i]" "RET")))
+
+
+
+(rc/require 'crux)
+(setq save-abbrevs 'silently)
+(setq-default abbrev-mode t)
+
+;;; Move Text
+(rc/require 'move-text)
+(global-set-key (kbd "M-p") 'move-text-up)
+(global-set-key (kbd "M-n") 'move-text-down)
+
+(rc/require 'crux-move-beginning-of-line)
+(global-set-key (kbd "C-a") 'crux-move-beginning-of-line)

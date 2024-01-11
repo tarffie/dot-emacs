@@ -48,7 +48,6 @@ This command does the inverse of `fill-paragraph'."
     (fill-paragraph nil)))
 
 (global-set-key (kbd "C-c M-q") 'rc/unfill-paragraph)
-
 (defconst rc/frame-transparency 85)
 
 (defun rc/toggle-transparency ()
@@ -75,3 +74,4 @@ This command does the inverse of `fill-paragraph'."
 
 (global-set-key (kbd "C-,") 'rc/duplicate-line)
 (setq confirm-kill-emacs 'y-or-n-p)
+

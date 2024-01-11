@@ -1,8 +1,9 @@
-(package-initialize)
 (add-to-list 'load-path "~/.emacs.local/")
 
 (load "~/.emacs.rc/rc.el")
-(load "~/.emacs.d/catpuccin-theme.el") ; download link for theme here ~> https://github.com/catppuccin/emacs
+(load "~/.emacs.d/catppuccin-theme.el")
+ ; download link for theme here ~> https://github.com/catppuccin/emacs
+(package-initialize)
 
 ;;; Appearance
 (eval-after-load 'zenburn
@@ -28,9 +29,9 @@
 (column-number-mode 1)
 (global-display-line-numbers-mode t)
 (setq-default inhibit-startup-screen t)
-(setq-default line-numbers-type 'relative)
+(setq-default menu-bar--display-line-numbers-relative)
 (setq-default font "Ubuntu Mono-18") 
-(load-theme 'catppuccin :no-confirm) ;
+(load-theme 'catppuccin :no-confirm)
 ;;some major-modes configs below
 
 ;;; Paredit
@@ -136,7 +137,7 @@
 ;;; yasnippet
 (rc/require 'yasnippet)
 
-(require 'yasnippet)
+(rc/require 'yasnippet)
 
 (setq yas/triggers-in-field nil)
 (setq yas-snippet-dirs '("~/.emacs.snippets/"))
@@ -150,7 +151,7 @@
 
 (rc/require 'company)
 (use-package company
-  :ensure t
+  p:ensure t
   :init
   (global-company-mode)
   :config
@@ -188,3 +189,6 @@
 
 (rc/require 'crux-move-beginning-of-line)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
+
+
+(custom-set-variables '(tab-width 2))

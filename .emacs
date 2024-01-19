@@ -1,26 +1,19 @@
 (add-to-list 'load-path "~/.emacs.local/")
-
 (load "~/.emacs.rc/rc.el")
 (load "~/.emacs.d/catppuccin-theme.el")
  ; download link for theme here ~> https://github.com/catppuccin/emacs
 (package-initialize)
-
 ;;; Appearance
 (eval-after-load 'zenburn
   (set-face-attribute 'line-number nil :inherit 'default))
-
 ;;; ido
 (rc/require 'smex 'ido-completing-read+)
-
 (require 'ido-completing-read+)
-
 (ido-mode 1)
 (ido-everywhere 1)
 (ido-ubiquitous-mode 1)
-
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-
 ; the main stuff that I'm annoying about. 
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -28,12 +21,13 @@
 (show-paren-mode 1)
 (column-number-mode 1)
 (global-display-line-numbers-mode t)
+(global-company-mode t)
 (setq-default inhibit-startup-screen t)
-(setq-default menu-bar--display-line-numbers-relative)
 (setq-default font "Ubuntu Mono-18") 
 (load-theme 'catppuccin :no-confirm)
-;;some major-modes configs below
+(menu-bar--display-line-numbers-mode-relative)
 
+;;some major-modes configs below
 ;;; Paredit
 (rc/require 'paredit)
 
@@ -48,7 +42,7 @@
 (add-hook 'scheme-mode-hook      'rc/turn-on-paredit)
 (add-hook 'racket-mode-hook      'rc/turn-on-paredit)
 (add-hook 'javascript-mode-hook  'rc/turn-on-paredit)
-
+(add-hook 'rust-mode-hook 'rc/turn-on-paraedit)
 ;;; Emacs lisp
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
@@ -107,6 +101,7 @@
 ;;; multiple cursors
 (rc/require 'multiple-cursors)
 
+
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->")         'mc/mark-next-like-this)
 (global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
@@ -122,7 +117,7 @@
 (setq dired-listing-switches "-alh")
 
 ;;; helm
-(rc/require 'helm 'helm-cmd-t 'helm-git-grep 'helm-ls-git)
+(rc/require 'helm  'helm-git-grep 'helm-ls-git)
 
 (setq helm-ff-transformer-show-only-basename nil)
 
@@ -137,7 +132,7 @@
 ;;; yasnippet
 (rc/require 'yasnippet)
 
-(rc/require 'yasnippet)
+(require 'yasnippet)
 
 (setq yas/triggers-in-field nil)
 (setq yas-snippet-dirs '("~/.emacs.snippets/"))
@@ -147,11 +142,11 @@
 (rc/require 'tree-sitter)
 (rc/require 'tree-sitter-langs)
 (global-tree-sitter-mode t)
-
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
 (rc/require 'company)
 (use-package company
-  p:ensure t
+  :ensure t
   :init
   (global-company-mode)
   :config
@@ -170,7 +165,7 @@
   :config
   (require 'smartparens-config)
   (smartparens-global-mode 1)
-  (show-smartparens-global-mode 1))
+  (setq-default show-smartparens-global-mode 1))
 
 (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
 (sp-pair "[" nil :post-handlers '(("||\n[i]" "RET")))
@@ -184,11 +179,13 @@
 
 ;;; Move Text
 (rc/require 'move-text)
+
+
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
-
-(rc/require 'crux-move-beginning-of-line)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
+
+
 
 
 (custom-set-variables '(tab-width 2))

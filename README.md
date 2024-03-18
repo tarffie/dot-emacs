@@ -8,8 +8,6 @@ Currently the project supports most major programming languages but some tweaks 
 
 ## Features and to-do work 
 
-SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
-
 |                | 		      implemented                     | need configuration                             |
 |----------------|-------------------------------|-----------------------------|
 |Major languages |`✅`                           |To some extent, yes            |

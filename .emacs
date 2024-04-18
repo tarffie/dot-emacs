@@ -101,7 +101,7 @@
 (global-set-key (kbd "C-c m s") 'magit-status)
 (global-set-key (kbd "C-c m l") 'magit-log)
 
-;;; multiple cursors
+;;; multiple cursors  
 (rc/require 'multiple-cursors)
 
 
@@ -112,8 +112,9 @@
 (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
 (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
-;; compile on C-c C-c
+;; compile on C-c C-c && term 
 (global-set-key (kbd "C-c C-c") 'compile)
+(global-set-key (kbd "C-c C-t") 'eshell)
 
 ;;; dired
 (require 'dired-x)
@@ -200,7 +201,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-	 '(move-text crux smartparens yasnippet tree-sitter-langs smex paredit multiple-cursors magit ido-completing-read+ helm-ls-git helm-git-grep haskell-mode dash-functional company))
+	 '(eterm-256color move-text crux smartparens yasnippet tree-sitter-langs smex paredit multiple-cursors magit ido-completing-read+ helm-ls-git helm-git-grep haskell-mode dash-functional company))
  '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

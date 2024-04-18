@@ -1,3 +1,13 @@
+(setq inhibit-startup-screen t
+      display-line-numbers-type 'relative
+      tab-width 2
+      scroll-step 0)
+(display-line-numbers-mode t)
+(global-display-line-numbers-mode t)
+(set-frame-font "CaskaydiaCove Nerd Font-18:bold" nil t)
+(set-frame-parameter nil 'alpha-background 0.6)
+(add-to-list 'default-frame-alist '(alpha-background . 75))
+(load "~/.emacs.rc/rc.el")
 (add-to-list 'load-path "~/.emacs.local/")
 (load "~/.emacs.rc/rc.el")
 (load "~/.emacs.d/catppuccin-theme.el")
@@ -20,12 +30,9 @@
 (scroll-bar-mode 0)
 (show-paren-mode 1)
 (column-number-mode 1)
-(global-display-line-numbers-mode t)
 (global-company-mode t)
-(setq-default inhibit-startup-screen t)
-(setq-default font "Ubuntu Mono-18") 
 (load-theme 'catppuccin :no-confirm)
-(menu-bar--display-line-numbers-mode-relative)
+
 
 ;;some major-modes configs below
 ;;; Paredit
@@ -41,7 +48,6 @@
 (add-hook 'common-lisp-mode-hook 'rc/turn-on-paredit)
 (add-hook 'scheme-mode-hook      'rc/turn-on-paredit)
 (add-hook 'racket-mode-hook      'rc/turn-on-paredit)
-(add-hook 'javascript-mode-hook  'rc/turn-on-paredit)
 (add-hook 'rust-mode-hook 'rc/turn-on-paraedit)
 ;;; Emacs lisp
 (add-hook 'emacs-lisp-mode-hook
@@ -68,10 +74,7 @@
   (add-to-list 'write-file-functions 'delete-trailing-whitespace))
 
 (add-hook 'tuareg-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'c++-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'c-mode-hook 'rc/set-up-whitespace-handling)
 (add-hook 'simpc-mode-hook 'rc/set-up-whitespace-handling)
-(add-hook 'emacs-lisp-mode 'rc/set-up-whitespace-handling)
 (add-hook 'java-mode-hook 'rc/set-up-whitespace-handling)
 (add-hook 'lua-mode-hook 'rc/set-up-whitespace-handling)
 (add-hook 'rust-mode-hook 'rc/set-up-whitespace-handling)
@@ -108,6 +111,9 @@
 (global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
 (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
 (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
+
+;; compile on C-c C-c
+(global-set-key (kbd "C-c C-c") 'compile)
 
 ;;; dired
 (require 'dired-x)
@@ -188,4 +194,17 @@
 
 
 
-(custom-set-variables '(tab-width 2))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+	 '(move-text crux smartparens yasnippet tree-sitter-langs smex paredit multiple-cursors magit ido-completing-read+ helm-ls-git helm-git-grep haskell-mode dash-functional company))
+ '(tab-width 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
